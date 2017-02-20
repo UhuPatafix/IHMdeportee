@@ -8,13 +8,10 @@ INCLUDEPATH += D:/Qwt/qwt-6.1.3/qwt-6.1.3/include/
 
 SOURCES += \
     main.cpp \
-    ihmdeportee.cpp \
-    courbe.cpp
+    ihmdeportee.cpp
 
 HEADERS += \
-    ihmdeportee.h \
-    courbe.h
+    ihmdeportee.h
 
 FORMS += \
-    ihmdeportee.ui \
-    courbe.ui
+    ihmdeportee.ui

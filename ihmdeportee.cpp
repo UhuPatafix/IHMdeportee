@@ -55,7 +55,7 @@ IHMdeportee::IHMdeportee(QWidget *parent) :
 
     //conditionsRespectees();
 
-    connect(ui->boutonValider, SIGNAL(clicked(bool)), this, SLOT(fenetreCourbe()));
+    //connect(ui->boutonValider, SIGNAL(clicked(bool)), this, SLOT(fenetreCourbe()));
     //connect(qApp, SIGNAL(boutonOK()), ui->boutonValider, SLOT(autoriseBouton()));
 
 }
@@ -170,12 +170,12 @@ void IHMdeportee::autoriseBouton()
 */
 
 
-void IHMdeportee::fenetreCourbe()
+/*void IHMdeportee::fenetreCourbe()
 {
     //this ->close();
     courbe *NouvelleFenetre = new courbe;
     NouvelleFenetre->show();
 }
-
+*/
 
 

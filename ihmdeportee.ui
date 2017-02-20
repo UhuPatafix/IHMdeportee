@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
-    <height>429</height>
+    <width>632</width>
+    <height>412</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,11 +16,16 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>50</y>
+     <x>20</x>
+     <y>30</y>
      <width>601</width>
      <height>371</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+    </font>
    </property>
    <property name="currentIndex">
     <number>0</number>
@@ -284,7 +289,7 @@
   <widget class="QProgressBar" name="batterie">
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>510</x>
      <y>10</y>
      <width>101</width>
      <height>23</height>
@@ -292,7 +297,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Aharoni</family>
+     <family>Arial</family>
+     <pointsize>8</pointsize>
     </font>
    </property>
    <property name="value">

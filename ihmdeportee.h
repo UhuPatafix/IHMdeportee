@@ -12,8 +12,7 @@
 #include <QSlider>
 #include <QDialog>
 #include <QString>
-#include "courbe.h"
-#include "ui_courbe.h"
+//#include "ui_courbe.h"
 
 
 namespace Ui {
@@ -33,7 +32,7 @@ public:
 
 
 public slots:
-void fenetreCourbe();
+//void fenetreCourbe();
 //int recupererValeurs1();
 //int recupererValeurs2();
 //int recupererValeurs3();

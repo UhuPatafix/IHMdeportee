@@ -1,7 +1,6 @@
 #include <QApplication>
 #include <QtWidgets>
 #include "ihmdeportee.h"
-#include "courbe.h"
 
 int main(int argc, char *argv[])
 {
