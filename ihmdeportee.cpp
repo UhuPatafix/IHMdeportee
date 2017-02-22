@@ -6,6 +6,7 @@
 #include "D:/Qwt/qwt-6.1.3/qwt-6.1.3/src/qwt_plot.h"
 #include "D:/Qwt/qwt-6.1.3/qwt-6.1.3/src/qwt_plot_curve.h"
 #include "D:/Qwt/qwt-6.1.3/qwt-6.1.3/src/qwt_series_data.h"
+#include <D:/Qwt/qwt-6.1.3/qwt-6.1.3/src/qwt_plot_grid.h>
 
 
 IHMdeportee::IHMdeportee(QWidget *parent) :
@@ -14,6 +15,9 @@ IHMdeportee::IHMdeportee(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    /*int largeur = QApplication::desktop()->width();
+    int hauteur = QApplication::desktop()->height();
+    this->resize(largeur,hauteur);*/
 
     //Chrono
 
@@ -35,18 +39,43 @@ IHMdeportee::IHMdeportee(QWidget *parent) :
 
     QwtPlot *myPlot = new QwtPlot(ui->simulation);
 
-    QwtPlotCurve *curve1 = new QwtPlotCurve("Curve 1");
 
+    QwtPlotCurve *curve1 = new QwtPlotCurve("Curve 1");
+    curve1->setPen(* new QPen(Qt::red, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+
+    QwtPlotGrid *grid = new QwtPlotGrid;
+    //grid->enableXMin(true);
+    //grid->enableYMin(true);
+    grid->setPen(* new QPen(Qt::gray));
+    grid->attach(myPlot);
 
     QwtPointSeriesData* myData = new QwtPointSeriesData;
 
 
     QVector<QPointF>* samples = new QVector<QPointF>;
 
-    samples->push_back(QPointF(1.0,1.0));
-    samples->push_back(QPointF(2.0,2.0));
-    samples->push_back(QPointF(3.0,3.0));
-    samples->push_back(QPointF(4.0,5.0));
+    samples->push_back(QPointF(0.0,0.0));
+    samples->push_back(QPointF(0.3,0.0));
+    samples->push_back(QPointF(0.3,600.0));
+    samples->push_back(QPointF(0.5,600.0));
+    samples->push_back(QPointF(0.5,-600.0));
+    samples->push_back(QPointF(0.7,-600.0));
+    samples->push_back(QPointF(0.7,0.0));
+    samples->push_back(QPointF(0.9,0.0));
+    samples->push_back(QPointF(0.9,600.0));
+    samples->push_back(QPointF(1.1,600.0));
+    samples->push_back(QPointF(1.1,-600.0));
+    samples->push_back(QPointF(1.3,-600.0));
+    samples->push_back(QPointF(1.3,0.0));
+    samples->push_back(QPointF(1.5,0.0));
+    samples->push_back(QPointF(1.5,600.0));
+    samples->push_back(QPointF(1.7,600.0));
+    samples->push_back(QPointF(1.7,-600.0));
+    samples->push_back(QPointF(1.9,-600.0));
+    samples->push_back(QPointF(1.9,0.0));
+    samples->push_back(QPointF(2.1,0.0));
+    samples->push_back(QPointF(2.1,600.0));
+    //samples->push_back(QPointF(-4.0,-4.0));
 
     myData->setSamples(*samples);
 

@@ -12,8 +12,8 @@
 #include <QSlider>
 #include <QDialog>
 #include <QString>
-#include <QTime>
 #include <QTimer>
+#include <QTime>
 
 
 namespace Ui {
@@ -33,17 +33,13 @@ public:
 
 
 public slots:
-  void lancerChronometre() ;
-  void stopChronometre();
-  void pauseChronometre();
-  void restartChronometre();
-  void refreshChronometre() ;
-  void displayChronometre();
-  void enabledWidget();
-
-//QTime * getchrono(){ return chrono;}
-//void conditionsRespectees(int nombreImpulsions, QString valeur, QString largeur, QString periode, QString amplitude);
-
+void lancerChronometre();
+void pauseChronometre();
+void stopChronometre();
+void restartChronometre();
+void refreshChronometre();
+void displayChronometre();
+void enabledWidget();
 //signals:
 //void boutonOK();
 
@@ -51,8 +47,6 @@ private:
     Ui::IHMdeportee *ui;
     QTime *chrono;
     QTimer *chronoTimer;
-    //gestionChrono *gestionChrono;
-
 };
 
 #endif // IHMDEPORTEE_H
