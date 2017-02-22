@@ -1,9 +1,7 @@
 #include "ihmdeportee.h"
 #include "ui_ihmdeportee.h"
 
-
 #include<QGridLayout>
-
 
 #include "D:/Qwt/qwt-6.1.3/qwt-6.1.3/src/qwt_plot.h"
 #include "D:/Qwt/qwt-6.1.3/qwt-6.1.3/src/qwt_plot_curve.h"
@@ -15,6 +13,25 @@ IHMdeportee::IHMdeportee(QWidget *parent) :
     ui(new Ui::IHMdeportee)
 {
     ui->setupUi(this);
+
+
+    //Chrono
+
+    chrono = new QTime ( 0, 0, 0 ) ;
+    chronoTimer = new QTimer () ;
+
+    connect(ui->start, SIGNAL(clicked(bool)), this, SLOT(lancerChronometre())); // quand on appuie sur commencer le chrono demarre
+    connect(chronoTimer, SIGNAL (timeout()), this, SLOT (refreshChronometre())) ; // mise à jour de la valeur du chrono
+
+    connect(ui->stop, SIGNAL(clicked(bool)), this, SLOT (stopChronometre())) ; // quand on appuie sur stop, le chrono s'arrete
+    connect(ui->stop, SIGNAL(clicked(bool)), this, SLOT (enabledWidget())) ;
+
+    connect(ui->pause, SIGNAL(clicked(bool)), this, SLOT (pauseChronometre())) ; // pause
+    connect(ui->reprendre, SIGNAL(clicked(bool)), this, SLOT (restartChronometre())) ; //reprendre
+
+
+
+    // Courbe
 
     QwtPlot *myPlot = new QwtPlot(ui->simulation);
 
@@ -43,28 +60,80 @@ IHMdeportee::IHMdeportee(QWidget *parent) :
 
     myPlot->replot();
 
-
-
-    //connect(ui->nombreImpulsions, SIGNAL(valueChanged(int)), this, SLOT(recupererValeurs1()));
-    //connect(ui->largeurImpulsion, SIGNAL(sliderMoved(int)), this, SLOT(recupererValeurs2()));
-    //connect(ui->largeurFenetre, SIGNAL(sliderMoved(int)), this, SLOT(recupererValeurs3()));
-    //connect(ui->periodicite, SIGNAL(sliderMoved(int)), this, SLOT(recupererValeurs4()));
-    //connect(ui->amplitudeMax, SIGNAL(sliderMoved(int)), this, SLOT(recupererValeurs5()));
-
-    //conditionsRespectees();
-
-    //conditionsRespectees();
-
-    //connect(ui->boutonValider, SIGNAL(clicked(bool)), this, SLOT(fenetreCourbe()));
-    //connect(qApp, SIGNAL(boutonOK()), ui->boutonValider, SLOT(autoriseBouton()));
-
 }
+
 
 IHMdeportee::~IHMdeportee()
 {
     delete ui;
 }
 
+
+//Démarrer le chrono
+
+void IHMdeportee::lancerChronometre()
+{
+   chronoTimer -> start ( 1000 ) ;    // On lance un affichage toutes les 1000 milisecondes
+   displayChronometre();
+}
+
+//Pause
+
+void IHMdeportee::pauseChronometre()
+{
+        chronoTimer->stop();
+
+}
+
+
+// arrêt d'urgence et pause
+
+void IHMdeportee::stopChronometre()
+{
+        chronoTimer->stop();
+
+}
+
+//Relancer le chrono après la pause
+
+void IHMdeportee::restartChronometre()
+{
+    chronoTimer->start();
+
+}
+
+//Mise à jour du chrono
+
+void IHMdeportee::refreshChronometre()
+{
+    *chrono = chrono->addSecs(1);
+    displayChronometre();
+}
+
+//afficher chrono
+
+void IHMdeportee::displayChronometre()
+{
+    ui->chronometre -> display( chrono->toString("h:mm:ss")) ;
+}
+
+
+//disable les bouton pause, reprendre et commencer quand on appuie sur arret d'urgence
+
+void IHMdeportee::enabledWidget()
+{
+    QPushButton *bouton1 = new QPushButton;
+    bouton1 = ui->reprendre;
+    bouton1->setEnabled(false);
+
+    QPushButton *bouton2 = new QPushButton;
+    bouton2 = ui->pause;
+    bouton2->setEnabled(false);
+
+    QPushButton *bouton3 = new QPushButton;
+    bouton3 = ui->start;
+    bouton3->setEnabled(false);
+}
 
 
 
@@ -170,12 +239,12 @@ void IHMdeportee::autoriseBouton()
 */
 
 
-/*void IHMdeportee::fenetreCourbe()
+/*void IHMdeportee::fenetreChrono()
 {
     //this ->close();
-    courbe *NouvelleFenetre = new courbe;
+
     NouvelleFenetre->show();
-}
-*/
+} */
+
 
 

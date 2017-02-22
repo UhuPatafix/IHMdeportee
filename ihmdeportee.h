@@ -12,7 +12,8 @@
 #include <QSlider>
 #include <QDialog>
 #include <QString>
-//#include "ui_courbe.h"
+#include <QTime>
+#include <QTimer>
 
 
 namespace Ui {
@@ -32,13 +33,15 @@ public:
 
 
 public slots:
-//void fenetreCourbe();
-//int recupererValeurs1();
-//int recupererValeurs2();
-//int recupererValeurs3();
-//int recupererValeurs4();
-//int recupererValeurs5();
-//void autoriseBouton();
+  void lancerChronometre() ;
+  void stopChronometre();
+  void pauseChronometre();
+  void restartChronometre();
+  void refreshChronometre() ;
+  void displayChronometre();
+  void enabledWidget();
+
+//QTime * getchrono(){ return chrono;}
 //void conditionsRespectees(int nombreImpulsions, QString valeur, QString largeur, QString periode, QString amplitude);
 
 //signals:
@@ -46,6 +49,10 @@ public slots:
 
 private:
     Ui::IHMdeportee *ui;
+    QTime *chrono;
+    QTimer *chronoTimer;
+    //gestionChrono *gestionChrono;
+
 };
 
 #endif // IHMDEPORTEE_H
